@@ -1,0 +1,20 @@
+Inciar minikube con recursos definidos
+    minikube start 6000 cpu 2
+
+intalar jenkins
+
+    helm repo add jenkins https://charts.jenkins.io
+    helm repo update
+    helm install jenkins --namespace jenkins --values values.yml  jenkins/jenkins 
+
+Show jenkins url
+    minikube service jenkins -n jenkins --url
+
+See services account
+    kubectl get serviceaccount -n jenkins
+
+
+Add plugin de mi docker regestry
+
+
+

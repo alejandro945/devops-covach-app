@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "postgres-db.fullname" . }}-test-connection"
+  labels:
+    {{- include "postgres-db.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "postgres-db.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

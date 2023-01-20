@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: frontend
+type: Opaque
+stringData:
+  NEXT_PUBLIC_AUTH_SERVICE_BASE_URL: http://covachapp.juanballesteros.engineer/api/auth
+  NEXT_PUBLIC_PRODUCT_SERVICE_BASE_URL: http://covachapp.juanballesteros.engineer/api/product
+  #NEXT_PUBLIC_SEARCH_SERVICE_BASE_URL: http://search-service.default.svc.cluster.local/api/search
+  NEXT_PUBLIC_SEARCH_SERVICE_BASE_URL: http://search.juanballesteros.engineer/api/search

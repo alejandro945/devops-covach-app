@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: search-svc
+type: Opaque
+stringData:
+  # MONGO_URL: mongodb://root:root@$SEARCH_DB_MONGO_DB_SERVICE_HOST:27017
+  MONGO_URL: mongodb://root:root@search-db-mongo-db.default.svc.cluster.local:27017
+  RABBITMQ_CONNECTION_URL: amqps://ynoocxhb:sOXZG6xEDo1tNtJBszctir1cW9PARTa5@beaver.rmq.cloudamqp.com/ynoocxhb
+  SEARCH_SERVICE_PORT: "9000"

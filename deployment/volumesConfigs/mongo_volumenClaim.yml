@@ -1,0 +1,14 @@
+#it is a reques of resource (persistence volume) from a pod by example, teh pod claim by a storage throug PVC
+# Es el puente para reclamar ese columen creado
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mongo-db-claim
+  namespace: default
+spec:
+  #storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi

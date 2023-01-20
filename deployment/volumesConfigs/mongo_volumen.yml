@@ -1,0 +1,23 @@
+# Contiene las indicaciones para crear un volumen
+kind: PersistentVolume
+apiVersion: v1
+metadata: 
+  name: mongo-db-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+
+#500M # 1Gi
+
+
+##capacity:
+##    storage: 10Gi
+##  accessModes:
+##    - ReadWriteOnce

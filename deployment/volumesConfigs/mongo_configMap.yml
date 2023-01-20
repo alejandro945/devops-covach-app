@@ -1,0 +1,9 @@
+# Indicaciones para configurar la db creada
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-init-script-configmap
+data:
+  initdb.sh: |-
+   #!/bin/bash
+   echo hola

@@ -1,0 +1,10 @@
+[
+  {
+    "email": "customer_user_1@test.com",
+    "password": "admin123456"
+  },
+  {
+    "email": "supplier_user_1@test.com",
+    "password": "admin123456"
+  }
+]

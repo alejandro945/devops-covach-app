@@ -1,0 +1,35 @@
+podTemplate(label: 'build', containers: [
+    containerTemplate(name: 'ubuntu', image: 'ubuntu', command: 'cat', ttyEnabled: true)
+  ],
+  volumes: [
+    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+  ]
+  ) {
+    node('build') {
+      container('ubuntu') {
+        sh 'apt update'  
+        sh 'apt-get install -y git curl'
+        sh 'mkdir app '
+        sh 'ls -la'
+        withCredentials([usernamePassword(credentialsId: '84bffb7c-a3bf-44f4-9471-977870eeed88', 
+          passwordVariable: 'pass', usernameVariable: 'user')]){
+            sh label: 'Login to Github', script: '''
+git clone https://$user:$pass@github.com/JuanDavidBallesteros/rental_app.git ./app '''
+          }
+        sh 'echo intalling CLI'
+        sh 'curl -sL https://aka.ms/InstallAzureCLIDeb | bash'
+        sh 'echo login CLI'
+        withCredentials([usernamePassword(credentialsId: '4a72d420-a3aa-428c-b9fe-3d195bdc3b3b', 
+          passwordVariable: 'pass1', usernameVariable: 'user1')]){
+            sh label: 'Login to Github', script: '''
+az login -u $user1 -p $pass1 '''
+          }
+          sh '''
+          az acr build --image jenkins/buil_auth:latest \
+          --registry covapp \
+          --file ./app/Dockerfile ./app/services/auth
+  '''
+      }        
+    }  
+  }
+ 
