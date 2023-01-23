@@ -1,19 +1,17 @@
 ---
-
 PageTitle: Deploying - Distributed System 
-author: "Juan David Ballesteros"
-date: "30/11/2022"
+author: "Alejandro Varela"
+date: "10/01/2023"
 output: md
-
 ---
 
 # Covachapp Deployment
 
 ## What is this document about?
 
-This repository contains the proposal for the provisioning and deployment of web applications divided into microservices. There are 5 microservices running and 3 databases in the Kubernetes cluster and one in the Cloudamqp service.
+This repository contains the proposal for the provisioning and deployment of web applications divided into microservices. There are 5 microservices running and 3 databases in a Kubernetes cluster. Also one in the CloudAMQP service.
 
-![Diagram](./src/drawio.png)
+![Diagram](./assets/drawio.png)
 
 The ingress to the services is through an application gateway offered by Azure as an add-on to the AKS cluster, this service is the Azure counterpart to Nginx ingress. Then requests are proxied to the corresponding service by domain name or path. 
 
@@ -76,86 +74,85 @@ Also, in future versions split the services into different repositories. This do
 Finally, the last upgrade is to move the authoritative DNS to Azure and implement a logger tool.
 
 ## Folder Structure
-
-├── data <br>
-├── deployment (Helm charts)<br>
-│   ├── go-app (Helmchart)<br>
-│   │   ├── charts<br>
-│   │   └── templates<br>
-│   ├── jenkins (Files and values)<br>
-│   ├── launchs (Values for charts)<br>
-│   ├── mongo-db (Helmchart)<br>
-│   ├── monitoring (Repository of Grafana)<br>
-│   ├── next-app (Helmchart)<br>
-│   ├── postgres-db (Helmchart)<br>
-│   ├── python-app (Helmchart)<br>
-│   ├── secrects (envs)<br>
-│   ├── volumesAzure (Volume definition and claim)<br>
-│   └── volumesConfigs (local)<br>
-├── docker<br>
-├── frontend<br>
-├── postman-collection<br>
-├── provisioning (Terraform Folder)<br>
-│   ├── config (Main, here tf init)<br>
-│   └── logic (Module)<br>
-├── services<br>
-│   ├── auth<br>
-│   ├── products<br>
-│   └── search<br>
-└── src (Readme resources)<br>
-
+```bash
+|- assets (Readme resources)
+|- data
+|- deployment (Helm charts)
+    |- go-app (Helmchart)
+        |- charts
+        |- templates
+    |- jenkins (Files and values)
+    |- launchs (Values for charts)
+    |- mongo-db (Helmchart)
+    |- monitoring (Repository of Grafana)
+    |- next-app (Helmchart)
+    |- postgres-db (Helmchart)
+    |- python-app (Helmchart)
+    |- secrects (envs)
+    |- volumesAzure (Volume definition and claim)
+    |- volumesConfigs (local)
+|- docker
+|- frontend
+|- postman-collection
+|- provisioning (Terraform Folder)
+    |- config (Main, here tf init)
+    |- logic (Module)
+|-  services
+    |- auth
+    |- products
+    |- search
+```
 ## Screenshots
 
 ### Application
 #### Access
 
-![Access the App](./src/Access.png)
+![Access the App](./assets/Access.png)
 
 #### Login
 
-![Login](./src/Login.png)
+![Login](./assets/Login.png)
 
 #### Product Creation
 
-![Product Creation](./src/ProductCreation.png)
+![Product Creation](./assets/ProductCreation.png)
 
 #### Search
 
-![Product Search](./src/ProductSearch.png)
+![Product Search](./assets/ProductSearch.png)
 
 
 ### CI/CD
 #### GitHub Hook
 
-![GitHub](./src/jenkins01.png)
+![GitHub](./assets/jenkins01.png)
 
 #### Jenkins Job
 
 Job terminated successfully using Jenkinsfile
-![GitHub](./src/jenkins05.png)
-![GitHub](./src/jenkins08.png)
+![GitHub](./assets/jenkins05.png)
+![GitHub](./assets/jenkins08.png)
 
 #### Azure ACR
 
 Here you can see the image uploaded to the container repository
-![GitHub](./src/jenkins09.png)
+![GitHub](./assets/jenkins09.png)
 
 ### Monitoring
 #### Grafana 
-![Grafana 1](./src/grafana-0.png)
+![Grafana 1](./assets/grafana-0.png)
 
 #### Dashboard compute resources
-![Grafana 2](./src/grafana-2.png)
-![Grafana 3](./src/grafana-3.png)
-![Grafana 7](./src/grafana-7.png)
+![Grafana 2](./assets/grafana-2.png)
+![Grafana 3](./assets/grafana-3.png)
+![Grafana 7](./assets/grafana-7.png)
 
 #### CPU Alerting 
 Metric
-![Grafana 4](./src/grafana-4.png)
+![Grafana 4](./assets/grafana-4.png)
 
 Alert
-![Grafana 5](./src/grafana-5.png)
+![Grafana 5](./assets/grafana-5.png)
 
 Notification
-![Grafana 6](./src/grafana-6.png)
-
+![Grafana 6](./assets/grafana-6.png)
